@@ -58,13 +58,14 @@ class diffusionModelWrapper(pl.LightningModule):
 
         # Compute loss and backprop
         loss = F.mse_loss(out, epsilon.float())
+
         self.epoch_loss.append(loss.item())
+        self.log('loss', loss.item(), on_step=False, on_epoch=True)
         return {'loss': loss}
 
     def on_train_epoch_end(self):
         if self.current_epoch > 0 and self.current_epoch % self.visualize_every_n_epochs == 0:
             self.visualize_sample(self.visualizefolder)
-        self.log('loss', np.mean(self.epoch_loss), on_step=False, on_epoch=True)
         self.epoch_loss = []
 
     def visualize_sample(self, save_path):
@@ -72,7 +73,7 @@ class diffusionModelWrapper(pl.LightningModule):
         # Visualize sample
         with torch.no_grad():
             self.unet.eval()
-            x = diffusion.inverse(self.unet.cpu(), shape=(1, 32, 32))
+            x = diffusion.inverse(self.unet, shape=(1, 32, 32), device=self.device)
             self.unet.train()
 
         self.logger.experiment.log(
