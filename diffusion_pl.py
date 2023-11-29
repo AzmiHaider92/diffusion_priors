@@ -123,6 +123,7 @@ if __name__ == "__main__":
                       devices=devices,
                       max_epochs=hparams.n_epochs,
                       log_every_n_steps=hparams.log_every_n_steps,
+                      callbacks=[checkpoint_callback],
                       check_val_every_n_epoch=hparams.save_ckpt_each_n_epochs,
                       enable_checkpointing=True,
                       detect_anomaly=True)
