@@ -3,6 +3,8 @@ __pycache__/
 checkpoints/
 .idea/
 wandb/
+configs/
 log/
 *.sqsh
+*.sh
 *.yaml

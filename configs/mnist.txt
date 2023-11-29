@@ -1,11 +1,11 @@
 # dirs
-expname = diffusion_trial1
+expname = diffusion_cluster
 log = ./log
 
 
 ##################################################### pytorch lightning configs
 num_workers = 2
-strategy = dp
+strategy = ddp
 n_epochs = 30000
 log_every_n_steps = 1
 save_top_k = 3

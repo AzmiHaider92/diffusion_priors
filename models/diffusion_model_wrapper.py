@@ -5,8 +5,8 @@ import numpy as np
 import pytorch_lightning as pl
 import torch
 import torch.nn.functional as F
-from pytorch_lightning.loggers import wandb
-
+#from pytorch_lightning.loggers import wandb
+import wandb
 from data.MNIST.load_mnist import load_mnist_data
 from models.diffusion import GaussianDiffusion
 from models.unet import UNetModel
